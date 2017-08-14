@@ -17,11 +17,11 @@ public class Quiz {
     public static ArrayList QuestionTest(){
         ArrayList<String> rawQuestionRow1 = new ArrayList<>();
         rawQuestionRow1.add("Hány éves a norvég király?");
-        rawQuestionRow1.add("12");
-        rawQuestionRow1.add("34");
+        rawQuestionRow1.add("22");
+        rawQuestionRow1.add("64");
         rawQuestionRow1.add("45");
-        rawQuestionRow1.add("33");
-        rawQuestionRow1.add("33");
+        rawQuestionRow1.add("80");
+        rawQuestionRow1.add("80");
 
         ArrayList<String> rawQuestionRow2 = new ArrayList<>();
         rawQuestionRow2.add("Tudja, mennyit fizet most a Microsoft az etikus hekkereknek?");
