@@ -1,31 +1,46 @@
 package com.tsystems;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import javax.swing.*;
+
 
 public class Quiz {
-    /*public static ArrayList QuizConstructor(ArrayList<String> rawQuestion){
-
-    }*/
     int score;
     ArrayList question;
+
     public Quiz(int score, ArrayList<String> question){
         this.score = score;
         this.question = question;
     }
     public static ArrayList QuestionTest(){
-        ArrayList<String> rawQuestionRow = new ArrayList<>();
-        rawQuestionRow.add("Hány éves a norvég király?");
-        rawQuestionRow.add("12");
-        rawQuestionRow.add("34");
-        rawQuestionRow.add("45");
-        rawQuestionRow.add("33");
-        rawQuestionRow.add("33");
-        return rawQuestionRow;
+        ArrayList<String> rawQuestionRow1 = new ArrayList<>();
+        rawQuestionRow1.add("Hány éves a norvég király?");
+        rawQuestionRow1.add("12");
+        rawQuestionRow1.add("34");
+        rawQuestionRow1.add("45");
+        rawQuestionRow1.add("33");
+        rawQuestionRow1.add("33");
+
+        ArrayList<String> rawQuestionRow2 = new ArrayList<>();
+        rawQuestionRow2.add("Tudja, mennyit fizet most a Microsoft az etikus hekkereknek?");
+        rawQuestionRow2.add("250.000 dollár");
+        rawQuestionRow2.add("8 év börtön");
+        rawQuestionRow2.add("50 dollár");
+        rawQuestionRow2.add("1.000 dollár");
+        rawQuestionRow2.add("250.000 dollár");
+
+        ArrayList<ArrayList<String>> questionTable = new ArrayList<ArrayList<String>>(2);
+        questionTable.add(rawQuestionRow1);
+        questionTable.add(rawQuestionRow2);
+        return questionTable;
     }
-    public void executeQA(ArrayList<String>Question){
-        AskQuestion(Question);
-        GetAnswer(Question);
+    public void executeQA(ArrayList<ArrayList<String>>questionTable){
+        for (int i=0; i < questionTable.size(); i++) {
+            AskQuestion(questionTable.get(i));
+            GetAnswer(questionTable.get(i));
+        }
     }
     public void AskQuestion(ArrayList<String>Question){
         for (int i = 0; i < Question.size()-1; i++) {
