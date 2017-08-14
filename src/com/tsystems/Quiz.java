@@ -50,18 +50,20 @@ public class Quiz {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                options[3]);
+                options[1]);
         return answer;
     }
     public void GetAnswer(ArrayList<String>Question){
-        int userAnswer = AskQuestion(Question);
+        int userAnswer = AskQuestion(Question)+1;
         int rightOne = Question.indexOf(Question.get(5));
+        JOptionPane.showMessageDialog(null, "Your answer is: " + userAnswer + "\n"+"The right answer is: " + rightOne);
         if (rightOne == userAnswer) {
             JOptionPane.showMessageDialog(null,"Match!");
             this.score += 1;
             JOptionPane.showMessageDialog(null, "Your score is: " + score);
         } else {
             JOptionPane.showMessageDialog(null, "Nope, wrong answer.");
+            JOptionPane.showMessageDialog(null, "Your score is: " + score);
         }
     }
 }
