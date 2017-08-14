@@ -1,9 +1,8 @@
 package com.tsystems;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import javax.swing.*;
 
 
 public class Quiz {
@@ -38,30 +37,31 @@ public class Quiz {
     }
     public void executeQA(ArrayList<ArrayList<String>>questionTable){
         for (int i=0; i < questionTable.size(); i++) {
-            AskQuestion(questionTable.get(i));
             GetAnswer(questionTable.get(i));
         }
     }
-    public void AskQuestion(ArrayList<String>Question){
-        for (int i = 0; i < Question.size()-1; i++) {
-            if (i > 0) {
-                System.out.println((i) + ". " + Question.get(i));
-            } else {
-                System.out.println(Question.get(i));
-            }
-        }
+
+    public int AskQuestion(ArrayList<String>Question){
+        Object[] options = {Question.get(1),Question.get(2),Question.get(3),Question.get(4)};
+        int answer = JOptionPane.showOptionDialog(null,
+                Question.get(0),
+                "Quiz",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[3]);
+        return answer;
     }
     public void GetAnswer(ArrayList<String>Question){
-        Scanner in = new Scanner(System.in);
+        int userAnswer = AskQuestion(Question);
         int rightOne = Question.indexOf(Question.get(5));
-        int userAnswer = in.nextInt();
-        System.out.println("userAnswer is " + userAnswer+ "." + "The right answer is " + rightOne + ".");
         if (rightOne == userAnswer) {
-            System.out.println("Match!");
+            JOptionPane.showMessageDialog(null,"Match!");
             this.score += 1;
-            System.out.println(score);
+            JOptionPane.showMessageDialog(null, "Your score is: " + score);
         } else {
-            System.out.println("Nope.");
+            JOptionPane.showMessageDialog(null, "Nope, wrong answer.");
         }
     }
 }
