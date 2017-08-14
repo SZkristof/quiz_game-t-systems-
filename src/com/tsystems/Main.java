@@ -1,8 +1,10 @@
 package com.tsystems;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("This is the quiz game!");
+        ArrayList question = new ArrayList(Quiz.QuestionTest());
+        Quiz.QA(question);
     }
 }
