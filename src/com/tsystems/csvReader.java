@@ -2,6 +2,7 @@ package com.tsystems;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +26,25 @@ public class csvReader {
                 // this adds the currently parsed line to the 2-dimensional string array
                 lines.add(Arrays.asList(values));
             }
+            /*for (List<String> line: lines) {
+                while(inputStream.hasNext(",")){
+                    String until = inputStream.next(",");
+                    String[] value = until.split(",");
+                    line;
+                }
 
+                for (String value: line) {
+
+
+                }
+
+            } */
             inputStream.close();
         }catch (FileNotFoundException e) {
             System.err.println("csv file not found");
         }
+
+
         System.out.println(lines);
     }
 
