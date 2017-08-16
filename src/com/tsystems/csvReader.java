@@ -11,16 +11,16 @@ public class csvReader {
     public String getPath() {
         String path = "";
         try {
-            scanPath = new Scanner(new File("/home/kristof/IdeaProjects/quiz_game-t-systems-/src/csv_path.txt"));
+            /* we should make it universal */
+            scanPath = new Scanner(new File("csv_path.txt"));
         } catch (Exception e) {
             System.out.println("csv_path.txt was not found...");
         }
 
+        /* For testing reasons it prints out the path to the csv file (the file contains only that) */
         while (scanPath.hasNextLine()) {
             path += scanPath.nextLine();
             System.out.println(path);
-
-
         }
         return path;
     }
@@ -36,20 +36,23 @@ public class csvReader {
     }
 
     public void readFile(){
-        ArrayList<ArrayList<String[]>> listOfLists = new ArrayList<>();
+        ArrayList<ArrayList<String>> questionTable = new ArrayList<ArrayList<String>>();
+
         while (scannedFile.hasNextLine()){
             String line = scannedFile.nextLine();
             String[] values = line.split(",");
-
-            // this adds the currently parsed line to the 2-dimensional string array
-            ArrayList<String[]> listLine = new ArrayList<>();
-            // List<String> items = Arrays.asList(str.split("\\s*,\\s*"));
-            System.out.println(values.toString());
-            listLine.add(values);
-            listOfLists.add(listLine);
+            ArrayList<String> tempQuestion = new ArrayList<>();
+            for (int i = 0; i < values.length; i++) {
+                if ((i+1)%5 == 0) {
+                    tempQuestion.add(values[i-4]);
+                    tempQuestion.add(values[i-3]);
+                    tempQuestion.add(values[i-2]);
+                    tempQuestion.add(values[i-1]);
+                    tempQuestion.add(values[i]);
+                    questionTable.add(tempQuestion);
+                }
+            }
         }
-
-        System.out.println(listOfLists);
     }
 
     public void closeFile(){
@@ -57,47 +60,3 @@ public class csvReader {
         scanPath.close();
     }
 }
-
-
-
-
-
-
-
-/*
-         public static void main(String[] args) {
-        String testFile = "/home/kristof/IdeaProjects/quiz_game-t-systems-/src/test.csv";
-        File fileName = new File(testFile);
-
-
-        //two dimensional arrayList
-        List<List<String>> lines = new ArrayList<>();
-        Scanner inputStream;
-
-        try{
-            inputStream = new Scanner(fileName);
-
-            while(inputStream.hasNextLine()){
-                String line= inputStream.nextLine();
-                String[] values = line.split(",");
-                // this adds the currently parsed line to the 2-dimensional string array
-                lines.add(Arrays.asList(values));
-            }
-            /*for (List<String> line: lines) {
-                while(inputStream.hasNext(",")){
-                    String until = inputStream.next(",");
-                    String[] value = until.split(",");
-                    line;
-                }
-
-                for (String value: line) {
-
-
-                }
-
-            }
-            inputStream.close();
-        }catch (FileNotFoundException e) {
-            System.err.println("csv file not found");
-        }
-    */
