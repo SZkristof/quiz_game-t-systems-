@@ -36,15 +36,20 @@ public class csvReader {
     }
 
     public void readFile(){
-        List<List<String>> lines = new ArrayList<>();
+        ArrayList<ArrayList<String[]>> listOfLists = new ArrayList<>();
         while (scannedFile.hasNextLine()){
-            String line= scannedFile.nextLine();
+            String line = scannedFile.nextLine();
             String[] values = line.split(",");
+
             // this adds the currently parsed line to the 2-dimensional string array
-            lines.add(Arrays.asList(values));
+            ArrayList<String[]> listLine = new ArrayList<>();
+            // List<String> items = Arrays.asList(str.split("\\s*,\\s*"));
+            System.out.println(values.toString());
+            listLine.add(values);
+            listOfLists.add(listLine);
         }
-        String a = lines.get(1).get(0);
-        System.out.println(lines);
+
+        System.out.println(listOfLists);
     }
 
     public void closeFile(){
