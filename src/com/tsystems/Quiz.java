@@ -42,7 +42,8 @@ public class Quiz {
     }
 
     public int AskQuestion(ArrayList<String>Question){
-        Object[] options = {Question.get(1),Question.get(2),Question.get(3),Question.get(4)};
+        /* We should randomize this one. */
+        Object[] options = {Question.get(2),Question.get(3),Question.get(1),Question.get(4)};
         int answer = JOptionPane.showOptionDialog(null,
                 Question.get(0),
                 "Quiz",
@@ -55,8 +56,9 @@ public class Quiz {
     }
     public void GetAnswer(ArrayList<String>Question){
         int userAnswer = AskQuestion(Question)+1;
-        int rightOne = Question.indexOf(Question.get(5));
-        JOptionPane.showMessageDialog(null, "Your answer is: " + userAnswer + "\n"+"The right answer is: " + rightOne);
+        int rightOne = Question.indexOf(Question.get(1));
+        JOptionPane.showMessageDialog(null, "Your answer is: " + userAnswer +
+                "\n"+"The right answer is: " + rightOne);
         if (rightOne == userAnswer) {
             JOptionPane.showMessageDialog(null,"Match!");
             this.score += 1;

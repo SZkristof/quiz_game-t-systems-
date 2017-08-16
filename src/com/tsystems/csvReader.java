@@ -35,7 +35,8 @@ public class csvReader {
         }
     }
 
-    public void readFile(){
+    public ArrayList readFile(){
+        openFile();
         ArrayList<ArrayList<String>> questionTable = new ArrayList<ArrayList<String>>();
 
         while (scannedFile.hasNextLine()){
@@ -53,6 +54,8 @@ public class csvReader {
                 }
             }
         }
+        closeFile();
+        return questionTable;
     }
 
     public void closeFile(){

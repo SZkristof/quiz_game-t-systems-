@@ -7,11 +7,7 @@ public class Main {
 
 
         csvReader file = new csvReader();
-        file.openFile();
-        file.readFile();
-        file.closeFile();
-
-        ArrayList questionTable = new ArrayList(Quiz.QuestionTest());
+        ArrayList questionTable = new ArrayList(file.readFile());
         int score = 0;
         Quiz quiz = new Quiz(score, questionTable);
         quiz.executeQA(questionTable);
