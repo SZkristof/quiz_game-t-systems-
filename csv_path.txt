@@ -1,1 +1,1 @@
-/home/matraiv/quiz_game-t-systems-/src/test.csv
+/home/szabadon/codecool/java_freestyle/src/test.csv

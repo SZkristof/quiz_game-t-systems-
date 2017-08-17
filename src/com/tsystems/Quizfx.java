@@ -14,6 +14,8 @@ import javafx.scene.text.Text;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.Collections;
+import javafx.scene.image.Image;
+import java.io.FileInputStream;
 
 
 public class Quizfx extends Application {
@@ -21,7 +23,7 @@ public class Quizfx extends Application {
     //creating a Group object
     Group group = new Group();
     //Creating a Scene by passing the group object, height and width
-    Scene scene = new Scene(group ,600, 300);
+    Scene scene = new Scene(group ,800, 600);
     //Retrieving the observable list object
     ObservableList list = group.getChildren();
 
@@ -37,27 +39,29 @@ public class Quizfx extends Application {
     public void start(Stage primaryStage) throws Exception {
         Intro();
         //setting color to the scene
-        scene.setFill(Color.BROWN);
+        scene.setFill(Color.MAGENTA);
         //Setting the title to Stage.
         primaryStage.setTitle("The Ultimate Quiz Challenge");
         //Adding the scene to Stage
         primaryStage.setScene(scene);
+        //Disabling resize
+        primaryStage.setResizable(false);
         //Displaying the contents of the stage
         primaryStage.show();
     }
     public void createScore(int score){
         Rectangle rectangleScore = new Rectangle();
-        rectangleScore.setX(0);
-        rectangleScore.setY(0);
+        rectangleScore.setX(100);
+        rectangleScore.setY(500);
         rectangleScore.setHeight(30);
-        rectangleScore.setWidth(30);
-        rectangleScore.setFill(Color.DEEPPINK);
+        rectangleScore.setWidth(180);
+        rectangleScore.setFill(Color.GREY);
 
         Text textScore = new Text();
         textScore.setFont(new Font(20));
-        textScore.setX(5);
-        textScore.setY(20);
-        textScore.setText(String.valueOf(score));
+        textScore.setX(110);
+        textScore.setY(520);
+        textScore.setText("Your score is: " + String.valueOf(score));
 
         list.add(rectangleScore);
         list.add(textScore);
@@ -69,7 +73,7 @@ public class Quizfx extends Application {
 
         //Resources to dynamically resize rectangle for smoothly containing the text
         int textSize = answerText.length();
-        int textWidth = textSize * 17;
+        int textWidth = (textSize * 40)/3 - 25;
         System.out.println(textSize);
         System.out.println(textWidth);
 
@@ -108,6 +112,7 @@ public class Quizfx extends Application {
 
         //Registering the event filter
         rectangleAnswer.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        textAnswer.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
 
         list.add(rectangleAnswer);
         list.add(textAnswer);
@@ -116,10 +121,10 @@ public class Quizfx extends Application {
         //Question rectangle
         Rectangle rectangleQuestion = new Rectangle();
         //Setting the properties of the rectangle
-        rectangleQuestion.setX(140.0f);
+        rectangleQuestion.setX(100.0f);
         rectangleQuestion.setY(75.0f);
-        rectangleQuestion.setWidth(300.0f);
-        rectangleQuestion.setHeight(40.0f);
+        rectangleQuestion.setWidth(600.0f);
+        rectangleQuestion.setHeight(80.0f);
         //Setting the height and width of the arc
         rectangleQuestion.setArcWidth(30.0);
         rectangleQuestion.setArcHeight(20.0);
@@ -129,10 +134,10 @@ public class Quizfx extends Application {
         //Question text
         Text textQuestion = new Text();
         //Setting font to the text
-        textQuestion.setFont(new Font(25));
+        textQuestion.setFont(new Font(50));
         //setting the position of the text
-        textQuestion.setX(150);
-        textQuestion.setY(100);
+        textQuestion.setX(120);
+        textQuestion.setY(130);
         //Setting the text to be added.
         textQuestion.setText(questionText);
 
@@ -144,30 +149,47 @@ public class Quizfx extends Application {
         group.getChildren().clear();
         Text textGameOver = new Text();
         textGameOver.setX(150);
-        textGameOver.setY(100);
-        textGameOver.setText("Game Over \n Your score is "+ score);
+        textGameOver.setY(200);
+        textGameOver.setText("Game Over!");
+        textGameOver.setFont(new Font(50));
+
+        Text textScore = new Text();
+        textScore.setX(150);
+        textScore.setY(300);
+        textScore.setText("Your final score is: "+ score);
+        textScore.setFont(new Font(40));
+
+        Rectangle rectangleScore = new Rectangle();
+        rectangleScore.setX(140.0f);
+        rectangleScore.setY(255.0f);
+        rectangleScore.setWidth(430.0f);
+        rectangleScore.setHeight(60.0f);
+        rectangleScore.setArcWidth(30.0);
+        rectangleScore.setArcHeight(20.0);
+        rectangleScore.setFill(Color.LIGHTYELLOW);
 
         Rectangle rectangleGameOver = new Rectangle();
         rectangleGameOver.setX(140.0f);
-        rectangleGameOver.setY(75.0f);
-        rectangleGameOver.setWidth(300.0f);
-        rectangleGameOver.setHeight(120.0f);
+        rectangleGameOver.setY(150.0f);
+        rectangleGameOver.setWidth(320.0f);
+        rectangleGameOver.setHeight(65.0f);
         rectangleGameOver.setArcWidth(30.0);
         rectangleGameOver.setArcHeight(20.0);
         rectangleGameOver.setFill(Color.LIGHTYELLOW);
 
         Text textExit = new Text();
-        textExit.setX(180);
-        textExit.setY(150);
+        textExit.setX(148);
+        textExit.setY(435);
         textExit.setText("EXIT");
+        textExit.setFont(new Font(30));
 
         Rectangle rectangleExit = new Rectangle();
-        rectangleExit.setX(175.0f);
-        rectangleExit.setY(145.0f);
-        rectangleExit.setWidth(30.0f);
-        rectangleExit.setHeight(20.0f);
-        rectangleExit.setArcWidth(3.0);
-        rectangleExit.setArcHeight(2.0);
+        rectangleExit.setX(140.0f);
+        rectangleExit.setY(405.0f);
+        rectangleExit.setWidth(80.0f);
+        rectangleExit.setHeight(40.0f);
+        rectangleExit.setArcWidth(30.0);
+        rectangleExit.setArcHeight(20.0);
         //Color rectangle
         rectangleExit.setFill(Color.RED);
 
@@ -181,24 +203,35 @@ public class Quizfx extends Application {
 
         //Registering the event filter
         rectangleExit.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-
+        textExit.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
 
         list.add(rectangleGameOver);
         list.add(textGameOver);
+        list.add(rectangleScore);
+        list.add(textScore);
         list.add(rectangleExit);
         list.add(textExit);
     }
 
     public ArrayList questionGenerator(ArrayList<ArrayList<String>> questionTable){
         if (questionTable.size() > 0){
-            questionLine = questionTable.get(0);
+            questionLine = new ArrayList<>(questionTable.get(0));
             String question = questionLine.get(0);
-            questionLine.remove(0);
-            Collections.shuffle(questionLine);
-            questionLine.add(0, question);
+
             System.out.println(questionLine);
+            ArrayList<String> tempQuestion = new ArrayList<>(questionLine);
+            tempQuestion = questionTable.get(0);
+
+            tempQuestion.remove(0);
+            Collections.shuffle(tempQuestion);
+            tempQuestion.add(0, question);
+
+            System.out.println(questionLine);
+            System.out.println(tempQuestion);
+
             questionTable.remove(0);
-            return questionLine;
+
+            return tempQuestion;
         } else {
             ArrayList<String> thisIsTheEnd = new ArrayList<>();
             return thisIsTheEnd;
@@ -211,19 +244,27 @@ public class Quizfx extends Application {
         } else {
             createScore(score);
             createQuestion(questionLine.get(0));
-            createAnswer(20, 130, questionLine.get(1));
-            createAnswer(280, 130, questionLine.get(2));
-            createAnswer(20, 220, questionLine.get(3));
-            createAnswer(280, 220, questionLine.get(4));
+            createAnswer(100, 200, questionLine.get(1));
+            createAnswer(400, 200, questionLine.get(2));
+            createAnswer(100, 300, questionLine.get(3));
+            createAnswer(400, 300, questionLine.get(4));
         }
     }
 
     public void Intro(){
+
+
+        //Creating an image
+        //Image image = new Image(new FileInputStream("images/tsystemslogo.png"));
+
+        //Loading image from URL
+        //Image image = new Image(new FileInputStream("url for the image));
+
         //Drawing a Circle
         Circle circleStart = new Circle();
         //Setting the properties of the circle
-        circleStart.setCenterX(300.0f);
-        circleStart.setCenterY(135.0f);
+        circleStart.setCenterX(400.0f);
+        circleStart.setCenterY(300.0f);
         circleStart.setRadius(200.0f);
         circleStart.setFill(Color.WHITE);
 
@@ -232,18 +273,18 @@ public class Quizfx extends Application {
         //Setting font to the text
         textStart.setFont(new Font(25));
         //setting the position of the text
-        textStart.setX(130);
-        textStart.setY(150);
+        textStart.setX(230);
+        textStart.setY(300);
         //Setting the text to be added.
-        textStart.setText("Click to start a Quiz");
+        textStart.setText("Click here to start the Quiz");
 
         //Creating a line object
         Line lineStart = new Line();
         //Setting the properties to a line
-        lineStart.setStartX(130.0);
-        lineStart.setStartY(150.0);
-        lineStart.setEndX(460.0);
-        lineStart.setEndY(150.0);
+        lineStart.setStartX(230.0);
+        lineStart.setStartY(305.0);
+        lineStart.setEndX(565.0);
+        lineStart.setEndY(305.0);
 
         //Creating the mouse event handler
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -253,7 +294,7 @@ public class Quizfx extends Application {
                 group.getChildren().remove(lineStart);
                 group.getChildren().remove(circleStart);
                 group.getChildren().remove(textStart);
-                scene.setFill(Color.BROWN);
+                scene.setFill(Color.MAGENTA);
                 turnGenerator(questionGenerator(questionTable));
             }
         };
