@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.collections.ObservableList;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Quizfx extends Application {
@@ -191,6 +192,10 @@ public class Quizfx extends Application {
     public ArrayList questionGenerator(ArrayList<ArrayList<String>> questionTable){
         if (questionTable.size() > 0){
             questionLine = questionTable.get(0);
+            String question = questionLine.get(0);
+            questionLine.remove(0);
+            Collections.shuffle(questionLine);
+            questionLine.add(0, question);
             System.out.println(questionLine);
             questionTable.remove(0);
             return questionLine;
