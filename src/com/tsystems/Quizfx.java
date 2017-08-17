@@ -74,8 +74,6 @@ public class Quizfx extends Application {
         //Resources to dynamically resize rectangle for smoothly containing the text
         int textSize = answerText.length();
         int textWidth = (textSize * 40)/3 - 25;
-        System.out.println(textSize);
-        System.out.println(textWidth);
 
         //Setting the properties of the rectangle
         rectangleAnswer.setX(answerX);
@@ -103,7 +101,6 @@ public class Quizfx extends Application {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                System.out.println("Answer clicked!");
                 if (questionLine.get(1) == textAnswer.getText()) { score += 1;}
                 group.getChildren().clear();
                 turnGenerator(questionGenerator(questionTable));
@@ -217,20 +214,11 @@ public class Quizfx extends Application {
         if (questionTable.size() > 0){
             questionLine = new ArrayList<>(questionTable.get(0));
             String question = questionLine.get(0);
-
-            System.out.println(questionLine);
             ArrayList<String> tempQuestion = new ArrayList<>(questionLine);
-            tempQuestion = questionTable.get(0);
-
             tempQuestion.remove(0);
             Collections.shuffle(tempQuestion);
             tempQuestion.add(0, question);
-
-            System.out.println(questionLine);
-            System.out.println(tempQuestion);
-
             questionTable.remove(0);
-
             return tempQuestion;
         } else {
             ArrayList<String> thisIsTheEnd = new ArrayList<>();
@@ -290,7 +278,6 @@ public class Quizfx extends Application {
         EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                System.out.println("Fasten your seatbelts!");
                 group.getChildren().remove(lineStart);
                 group.getChildren().remove(circleStart);
                 group.getChildren().remove(textStart);
