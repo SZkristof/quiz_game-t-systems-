@@ -1,6 +1,8 @@
 package com.tsystems;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -13,7 +15,10 @@ public class Quiz {
         this.score = score;
         this.question = question;
     }
+
+    /*
     public static ArrayList QuestionTest(){
+        //for test reasons, please delete before product release
         ArrayList<String> rawQuestionRow1 = new ArrayList<>();
         rawQuestionRow1.add("Hány éves a norvég király?");
         rawQuestionRow1.add("22");
@@ -35,6 +40,7 @@ public class Quiz {
         questionTable.add(rawQuestionRow2);
         return questionTable;
     }
+    */
     public void executeQA(ArrayList<ArrayList<String>>questionTable){
         for (int i=0; i < questionTable.size(); i++) {
             GetAnswer(questionTable.get(i));
@@ -43,7 +49,13 @@ public class Quiz {
 
     public int AskQuestion(ArrayList<String>Question){
         /* We should randomize this one. */
-        Object[] options = {Question.get(2),Question.get(3),Question.get(1),Question.get(4)};
+        Object[] options = {Question.get(1),Question.get(3),Question.get(2),Question.get(4)};
+        ArrayList<String> answers=  new ArrayList<>();
+        answers.add("első");
+        answers.add("els");
+        answers.add("el");
+        Collections.shuffle(answers);
+        System.out.println(answers);
         int answer = JOptionPane.showOptionDialog(null,
                 Question.get(0),
                 "Quiz",
@@ -54,7 +66,20 @@ public class Quiz {
                 options[1]);
         return answer;
     }
+
+    /*
+    public static void correctAnswers(){
+        csvReader file = new csvReader();
+        ArrayList Question = new ArrayList(file.readFile());
+        ArrayList<String> rightAnswers = new ArrayList<>();
+        for (int i = 0; i < questionTable.size(); i++) {
+            questionTable.get(0).
+        }
+        System.out.println(questionTable);
+    }
+    */
     public void GetAnswer(ArrayList<String>Question){
+        //correctAnswers();
         int userAnswer = AskQuestion(Question)+1;
         int rightOne = Question.indexOf(Question.get(1));
         JOptionPane.showMessageDialog(null, "Your answer is: " + userAnswer +
