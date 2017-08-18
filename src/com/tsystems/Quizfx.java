@@ -73,7 +73,7 @@ public class Quizfx extends Application {
 
         //Resources to dynamically resize rectangle for smoothly containing the text
         int textSize = answerText.length();
-        int textWidth = (textSize * 40)/3 - 25;
+        int textWidth = (textSize * 50)/4 + 10;
 
         //Setting the properties of the rectangle
         rectangleAnswer.setX(answerX);
@@ -131,7 +131,7 @@ public class Quizfx extends Application {
         //Question text
         Text textQuestion = new Text();
         //Setting font to the text
-        textQuestion.setFont(new Font(50));
+        textQuestion.setFont(new Font(20));
         //setting the position of the text
         textQuestion.setX(120);
         textQuestion.setY(130);
